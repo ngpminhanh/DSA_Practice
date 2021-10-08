@@ -7,6 +7,7 @@ public class SinglyLinkedList {
     Node new_head;
     Node tmp;
 
+
     public void insertNode(int data) {
         if (head == null) {
             head = new Node(data, null);
@@ -119,10 +120,50 @@ public class SinglyLinkedList {
 
     }
 
+    public static Node mergeTwoLists(Node head1, Node head2) {
+
+        Node fin = new Node(0,null);
+        Node tmp = fin;
+        Node list1 = head1;
+        Node list2 = head2;
+        if (head1 == null && head2 == null) {
+            return null;
+        }else if (head1 == null) {
+            return head2;
+        } else if (head2 == null) {
+            return head1;
+        } else {
+            while (list1 != null && list2 != null) {
+                if (list1.data <= list2.data) {
+                    Node current = new Node(list1.data, null);
+                    tmp.next = current;
+                    list1 = list1.next;
+                }
+                else if (list2.data <= list1.data) {
+                    Node current = new Node(list2.data, null);
+                    tmp.next = current;
+                    list2 = list2.next;
+                }
+                tmp = tmp.next;
+            }
+            //tmp = tmp.next;
+            if (list1 == null) {
+                tmp.next = list2;
+            } else {
+                tmp.next = list1;
+            }
+            return fin.next;
+
+        }
+
+    }
 
 
 
-    public void printLinkedlist(Node head) {
+
+
+
+    public static void printLinkedlist(Node head) {
         Node current = head;
         while(current != null) {
             System.out.println(current.data);
@@ -130,7 +171,7 @@ public class SinglyLinkedList {
         }
     }
 
-    private class Node {
+    private static class Node {
         int data;
         Node next;
         Node (int data, Node next) {
