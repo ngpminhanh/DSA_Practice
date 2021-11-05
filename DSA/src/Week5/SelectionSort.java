@@ -1,37 +1,42 @@
 package Week5;
-
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
-
+import java.util.Scanner;
 
 public class SelectionSort {
+
     public static void main(String[] args) {
-        String s = StdIn.readString();
-        Stack<Character> stack = new Stack<>();
-        int m = 1;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '(' || c == '{' || c == '[') {
-                stack.push(c);
-            }
-            else {
-                if (stack.isEmpty()) {
-                    m = 0;
-                    break;
-                } else {
-                    char ch = stack.pop();
-                    if (c != ')' && ch == '(' || c != '}' && ch == '{' || c != ']' && ch == '[') {
-                        m = 0;
-                        break;
-                    }
+        long start = System.currentTimeMillis();
+        Scanner sc = new Scanner(System.in);
+        In in = new In("D:\\Java\\DSA\\src\\Week5\\data");
+        int[] array = in.readAllInts();
+        int n = array.length;
+
+        for (int i = 0; i < n; i++) {
+            int min = i;
+            for (int j = i + 1; j < n; j++) {
+                if (less(array[j], array[min])) {
+                    min = j;
                 }
             }
+            int tmp = array[i];
+            array[i] = array[min];
+            array[min] = tmp;
         }
-        if (m == 1 && stack.isEmpty()) {
-            System.out.println("YES");
+
+        for (int i = 0; i < n; i++) {
+            System.out.println(array[i]);
         }
-        else {
-            System.out.println("NO");
-        }
+
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+
     }
 
+    private static boolean less(int i, int i1) {
+        if (i < i1) {
+            return true;
+        }
+        return false;
+    }
 }

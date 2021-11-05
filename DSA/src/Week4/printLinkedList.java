@@ -1,6 +1,6 @@
 package Week4;
 
-import LinkedList.SList;
+
 import edu.princeton.cs.algs4.StdIn;
 
     public class printLinkedList {

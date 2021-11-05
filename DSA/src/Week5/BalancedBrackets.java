@@ -1,42 +1,36 @@
 package Week5;
 
-import java.util.Stack;
+import edu.princeton.cs.algs4.StdIn;
 
 public class BalancedBrackets {
-    static String isBalanced(String s) {
-        Stack<Character> stack = new Stack<>();
-
+    public static void main(String[] args) {
+        String s = StdIn.readString();
+        Week5.Stack<Character> stack = new Stack<>();
+        int m = 1;
         for (int i = 0; i < s.length(); i++) {
-            char x = s.charAt(i);
-
-            if (x == '(' || x == '[' || x == '{') {
-                stack.push(x);
-            } else {                            //[{}
+            char c = s.charAt(i);
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            }
+            else {
                 if (stack.isEmpty()) {
-                    return "NO";
+                    m = 0;
+                    break;
                 } else {
-                    switch (x) {
-                        case ')' :
-                            if (stack.pop() != '(') {
-                                return "NO";
-                            }
-                            break;
-                        case '}' :
-                            if (stack.pop() != '{') {
-                                return "NO";
-                            }
-                            break;
-                        case ']' :
-                            if (stack.pop() != '[') {
-                                return "NO";
-                            }
-                            break;
+                    char ch = stack.pop();
+                    if (c != ')' && ch == '(' || c != '}' && ch == '{' || c != ']' && ch == '[') {
+                        m = 0;
+                        break;
                     }
                 }
             }
         }
-
-        return (stack.isEmpty() ? "YES" : "NO");
+        if (m == 1 && stack.isEmpty()) {
+            System.out.println("YES");
+        }
+        else {
+            System.out.println("NO");
+        }
     }
 
 }

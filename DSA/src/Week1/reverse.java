@@ -1,6 +1,6 @@
 package week1;
 
-public class reverse {
+public class Reverse {
     public static void main(String[] hihi)
     {
         String name1 = "Alie";

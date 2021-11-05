@@ -1,6 +1,6 @@
 package Week4;
 
-import LinkedList.SList;
+
 
 public class SinglyLinkedList {
     Node head;
