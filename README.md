@@ -1,0 +1,2 @@
+# DATA STRUCTURES AND ALGORITHMS PRACTICE
+for pratice purpose 
